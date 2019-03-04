@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+@import ConsentViewController;
+
 @interface ViewController ()
 
 @end
@@ -16,7 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    ConsentViewController *cvc = [[ConsentViewController alloc] initWithAccountId:22 siteName:@"mobile.demo"];
+
+    // this is optional, we're just adding custom targetting parameters to be used in the SourcePoint's portal
+    [cvc setTargetingParamString:@"CMP" value:@"true"];
+
+    [cvc setOnInteractionComplete:^(ConsentViewController * consentSDK) {
+        Boolean consent = [consentSDK getPurposeConsentForId: @"5c0e813175223430a50fe465"];
+        NSLog(@"User has given consent to My Custom Purpose: %s", consent ? "true" : "false");
+    }];
+
+    [self.view addSubview:cvc.view];
 }
 
 

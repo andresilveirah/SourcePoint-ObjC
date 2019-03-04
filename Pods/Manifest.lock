@@ -1,0 +1,16 @@
+PODS:
+  - ConsentViewController (1.0.2)
+
+DEPENDENCIES:
+  - ConsentViewController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ConsentViewController
+
+SPEC CHECKSUMS:
+  ConsentViewController: 00cd86214078bc26585b3eb7826b4887ef8ac984
+
+PODFILE CHECKSUM: d0cd26b75ee702b16bd4c65c654536fe119d5aef
+
+COCOAPODS: 1.5.3
