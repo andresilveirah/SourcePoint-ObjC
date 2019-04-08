@@ -19,17 +19,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    ConsentViewController *cvc = [[ConsentViewController alloc] initWithAccountId:22 siteName:@"mobile.demo"];
+    ConsentViewControllerError * error = nil;
+
+    ConsentViewController *cvc = [[ConsentViewController alloc] initWithAccountId:22 siteName:@"mobile.demo" stagingCampaign:false andReturnError:&error];
+    NSLog(@"Something bad happened while building ConsentViewController: %@", error);
 
     // this is optional, we're just adding custom targetting parameters to be used in the SourcePoint's portal
     [cvc setTargetingParamString:@"CMP" value:@"true"];
 
-    [cvc setOnInteractionComplete:^(ConsentViewController * consentSDK) {
-        Boolean consent = [consentSDK getPurposeConsentForId: @"5c0e813175223430a50fe465"];
-        NSLog(@"User has given consent to My Custom Purpose: %s", consent ? "true" : "false");
+    [cvc setOnMessageReady:^(ConsentViewController * consentSDK) {
+        [self.view addSubview:consentSDK.view];
+        consentSDK.view.frame = self.view.bounds;
     }];
 
-    [self.view addSubview:cvc.view];
+    [cvc setOnInteractionComplete:^(ConsentViewController * consentSDK) {
+        ConsentViewControllerError * inError = nil;
+        NSArray *iabVendorIds = [NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:2], nil];
+        NSArray *purposeConsents = [consentSDK getCustomPurposeConsentsAndReturnError: &inError];
+        NSArray *vendorConsents = [consentSDK getCustomVendorConsentsAndReturnError: &inError];
+        NSArray *iabConsents = [consentSDK getIABVendorConsents:iabVendorIds error: &inError];
+        NSLog(@"User has given IAB Consent to the purposes: %@", iabConsents[0]);
+        NSLog(@"User has given IAB Consent to the purposes: %@", iabConsents[1]);
+        NSLog(@"User has given consent to the purposes: %@", purposeConsents);
+        NSLog(@"User has given consent to the vendors: %@", vendorConsents);
+        [self.view willRemoveSubview:consentSDK.view];
+        NSLog(@"onInteractionComplete: %@", inError);
+    }];
+
+    [cvc setOnErrorOccurred:^(ConsentViewControllerError * error) {
+        NSLog(@"onErrorOccurred: %@", error);
+    }];
+
+    [cvc loadMessage];
 }
 
 

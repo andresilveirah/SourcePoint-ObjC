@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -169,20 +169,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-test_app_objc/Pods-test_app_objc-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ConsentViewController/ConsentViewController.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-test_app_objc/Pods-test_app_objc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ConsentViewController.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-test_app_objc/Pods-test_app_objc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-test_app_objc/Pods-test_app_objc-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-test_app_objc/Pods-test_app_objc-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C020822DB70CD820D8CF3C76 /* [CP] Check Pods Manifest.lock */ = {
@@ -369,6 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcepoint.test-app-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -388,6 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcepoint.test-app-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
