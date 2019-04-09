@@ -6,5 +6,5 @@ target 'test_app_objc' do
   use_frameworks!
 
   # Pods for test_app_objc
-  pod 'ConsentViewController', '2.1.2'
+  pod 'ConsentViewController', '2.2.2'
 end
